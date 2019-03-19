@@ -1,0 +1,19 @@
+{
+  "name": "delivery-service",
+  "version": "1.0.0",
+  "description": "A fictional service delivery company",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fortunee/delivery-service.git"
+  },
+  "author": "Fortune Ekeruo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fortunee/delivery-service/issues"
+  },
+  "homepage": "https://github.com/fortunee/delivery-service#readme"
+}
