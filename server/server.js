@@ -13,14 +13,15 @@ router.post("/login", (req, res) => {
 
 router.get("/shipment", (req, res) => {
     // Get list of shipments
+    res.send('Shipments coming through...');
 });
 
 router.get("/bikers", (req, res) => {
     // Get list of bikers
 });
 
-router.get("/shipment", (req, res) => {
-    // Get list of shipments
+router.get("/manager", (req, res) => {
+    // Get manager
 });
 
 app.use("/api", router);
