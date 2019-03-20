@@ -11,7 +11,7 @@ const API_PORT = 3001;
 const app = express();
 const router = express.Router();
 
-const secret = process.env.JWT_SECRET;
+const secret = process.env.JWT_SECRET || 'SECRET TEXT';
 
 app.use(logger("dev"));
 app.use(bodyParser.urlencoded({ extended: true }));
