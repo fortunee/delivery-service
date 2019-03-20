@@ -1,10 +1,9 @@
-import jwt from 'jsonwebtoken';
+const jwt = require('jsonwebtoken');
 const users = require('./mocks/users.js');
 
 const secret = process.env.JWT_SECRET || 'SECRET TEXT';
 
 const Auth = {
-
   /**
    * verifyToken - Verifies validity of a supplied token
    *
@@ -53,4 +52,4 @@ const Auth = {
   }
 };
 
-export default Auth;
+module.exports = Auth;

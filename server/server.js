@@ -5,7 +5,8 @@ const jwt = require('jsonwebtoken');
 
 require('dotenv').config();
 
-const users = require('./mocks/users.js');
+const users = require('./mocks/users');
+const Auth = require('./auth.middleware');
 
 const API_PORT = 3001;
 const app = express();
@@ -37,19 +38,22 @@ router.post("/login", (req, res) => {
     }
 });
 
-router.get("/shipment", (req, res) => {
+router.get("/shipment", Auth.verifyToken, Auth.verifyManager, (req, res) => {
     // Get list of shipments
     res.send('Shipments coming through...');
 });
 
-router.get("/bikers", (req, res) => {
+router.get("/bikers", Auth.verifyToken, (req, res) => {
     // Get list of bikers
 });
 
-router.get("/manager", (req, res) => {
+router.get("/manager", Auth.verifyToken, (req, res) => {
     // Get manager
 });
 
 app.use("/api", router);
 
-app.listen(API_PORT, () => console.log(`Server running on https://127.0.0.1:${API_PORT}`));
+app.listen(
+    API_PORT,
+    () => console.log(`Server running on https://127.0.0.1:${API_PORT}`)
+);
