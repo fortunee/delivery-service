@@ -12,6 +12,7 @@ const ShipmentList = () => {
                     <th>Assignee</th>
                     <th>Order Status</th>
                     <th>Time Stamp</th>
+                    <th>Edit</th>
                 </tr>
                 </thead>
 
@@ -23,6 +24,7 @@ const ShipmentList = () => {
                         <td>Alvin</td>
                         <td>Waiting</td>
                         <td>March 20, 2019</td>
+                        <td><a href="#"><i class="tiny material-icons">edit</i></a></td>
                     </tr>
                     <tr>
                         <td>Jellybean</td>
@@ -31,6 +33,7 @@ const ShipmentList = () => {
                         <td>Alan</td>
                         <td>Picked up</td>
                         <td>March 19, 2019</td>
+                        <td><a href="#"><i class="tiny material-icons">edit</i></a></td>
                     </tr>
                     <tr>
                         <td>Lollipop</td>
@@ -39,6 +42,7 @@ const ShipmentList = () => {
                         <td>Jonathan</td>
                         <td>Assigned</td>
                         <td>March 10, 2019</td>
+                        <td><a href="#"><i class="tiny material-icons">edit</i></a></td>
                     </tr>
                     <tr>
                         <td>Shoes</td>
@@ -47,6 +51,7 @@ const ShipmentList = () => {
                         <td>Alan</td>
                         <td>Delivered</td>
                         <td>March 21, 2019</td>
+                        <td><a href="#"><i class="tiny material-icons">edit</i></a></td>
                     </tr>
                     <tr>
                         <td>Hat</td>
@@ -55,6 +60,7 @@ const ShipmentList = () => {
                         <td>Unassigned</td>
                         <td>Waiting</td>
                         <td>March 20, 2019</td>
+                        <td><a href="#"><i class="tiny material-icons">edit</i></a></td>
                     </tr>
                 </tbody>
             </table>
