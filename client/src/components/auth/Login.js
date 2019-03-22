@@ -1,16 +1,20 @@
 import React, { Component } from 'react';
 
 class Login extends Component {
-    // state = {
-
-    // }
-
-    handleChange(e) {
-        console.log(e);
+    state = {
+        email: '',
+        password: ''
     }
 
-    handleSubmit(e) {
-        console.log(e);
+    handleChange = (e) => {
+        this.setState({
+            [e.target.id]: e.target.value
+        })
+    }
+
+    handleSubmit = (e) => {
+        e.preventDefault();
+        console.log(this.state);
     }
     
     render() {
