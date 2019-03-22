@@ -1,14 +1,14 @@
 import React from 'react';
 
-const ShipmentDetails = () => {
+const ShipmentDetails = ({shipment}) => {
   return (
     <tr>
-        <td>Eclair</td>
-        <td>Hamburg</td>
-        <td>Berlin</td>
-        <td>Alvin</td>
-        <td>Waiting</td>
-        <td>March 20, 2019</td>
+        <td>{shipment.parcel}</td>
+        <td>{shipment.origin}</td>
+        <td>{shipment.destination}</td>
+        <td>{shipment.assignee}</td>
+        <td>{shipment.order_status}</td>
+        <td>{shipment.timestamp}</td>
         <td><a href="/shipment/3"><i className="tiny material-icons">edit</i></a></td>
     </tr>
   )
