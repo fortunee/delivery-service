@@ -1,7 +1,7 @@
 import React from 'react';
 import ShipmentDetails from './ShipmentDetails';
 
-const ShipmentList = () => {
+const ShipmentList = ({ shipments }) => {
     return (
         <div className="shipment-list">
             <table className="highlight responsive-table">
@@ -18,10 +18,11 @@ const ShipmentList = () => {
                 </thead>
 
                 <tbody>
-                    <ShipmentDetails />
-                    <ShipmentDetails />
-                    <ShipmentDetails />
-                    <ShipmentDetails />
+                    { shipments && shipments.map(shipment => {
+                        return (
+                            <ShipmentDetails  shipment={shipment} key={shipment.id} />
+                        )
+                    })}
                 </tbody>
             </table>
         </div>

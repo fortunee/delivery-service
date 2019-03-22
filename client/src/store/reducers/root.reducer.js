@@ -5,7 +5,7 @@ import shipmentReducer from './shipment.reducer';
 
 const rootReducer = combineReducers({
     auth: authReducer,
-    shipments: shipmentReducer
+    shipment: shipmentReducer
 });
 
 export default rootReducer;
