@@ -49,12 +49,13 @@ router.get("/shipment", (req, res) => {
     res.status(200).send(shipments);
 });
 
-router.get("/bikers", Auth.verifyToken, (req, res) => {
+/**
+ * @todo pass  Auth.verifyToken, middleware
+ */
+router.get("/bikers", (req, res) => {
     // Get list of bikers
-});
-
-router.get("/manager", Auth.verifyToken, (req, res) => {
-    // Get manager
+    const bikers = users.filter(user => user.role !== 'manager');
+    res.status(200).send(bikers);
 });
 
 app.use("/api/v1", router);
