@@ -1,9 +1,9 @@
-export const fetchSingleShipment = id => {
+export const fetchShipment = () => {
     return (dispatch, getState) => {
         // Make async call before actual action dispatch below
         return dispatch({
-            type: 'FETCH_SINGLE_SHIPMENT',
-            singleShipment: getState().shipment.shipments.find(item => item.id == id)
+            type: 'FETCH_SHIPMENT',
+            shipment
         })
     }
 }

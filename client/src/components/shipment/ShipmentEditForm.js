@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { fetchSingleShipment, updateShipment } from './../../store/actions/shipment.actions';
+import { updateShipment } from './../../store/actions/shipment.actions';
 
 class ShipmentEditForm extends Component {
   state = {
@@ -17,8 +17,7 @@ class ShipmentEditForm extends Component {
     /**
      * @todo Fetch bikers and set it to state too
      */
-    const { id } = this.props.match.params;
-    const currentShipment = this.props.fetchSingleShipment(id).singleShipment;
+    const currentShipment = this.props.shipment;
     this.setState({
       parcel: currentShipment.parcel,
       origin: currentShipment.origin,
@@ -88,9 +87,16 @@ class ShipmentEditForm extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchSingleShipment: (id) => dispatch(fetchSingleShipment(id)),
     updateShipment: (shipment) => dispatch(updateShipment(shipment))
   }
 }
 
-export default connect(null, mapDispatchToProps)(ShipmentEditForm);
+const mapStateToProps = (state, ownProps) => {
+  const id = ownProps.match.params.id;
+  const shipment = state.shipment.shipments.find(shipment => shipment.id == id);
+  return {
+    shipment
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ShipmentEditForm);

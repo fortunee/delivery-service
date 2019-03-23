@@ -32,8 +32,8 @@ const initialState = {
 
 const shipmentReducer = (state = initialState, action) => {
     switch (action.type) {
-      case 'FETCH_SINGLE_SHIPMENT':
-        return { ...state, singleShipment: action.shipment };
+      case 'FETCH_SHIPMENT':
+        return { ...state, shipment: action.shipment };
 
       case 'UPDATE_SHIPMENT':
         console.log(action.shipment);
