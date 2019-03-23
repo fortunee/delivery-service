@@ -2,10 +2,12 @@ const express = require('express');
 const logger = require('morgan');
 const bodyParser = require('body-parser');
 const jwt = require('jsonwebtoken');
+var cors = require('cors')
 
 require('dotenv').config();
 
 const users = require('./mocks/users');
+const shipments = require('./mocks/shipments');
 const Auth = require('./auth.middleware');
 
 const API_PORT = 3001;
@@ -14,6 +16,7 @@ const router = express.Router();
 
 const secret = process.env.JWT_SECRET || 'SECRET TEXT';
 
+app.use(cors());
 app.use(logger("dev"));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -38,9 +41,12 @@ router.post("/login", (req, res) => {
     }
 });
 
-router.get("/shipment", Auth.verifyToken, Auth.verifyManager, (req, res) => {
+/**
+ * @todo pass Auth.verifyToken, Auth.verifyManager, middlewares
+ */
+router.get("/shipment", (req, res) => {
     // Get list of shipments
-    res.send('Shipments coming through...');
+    res.status(200).send(shipments);
 });
 
 router.get("/bikers", Auth.verifyToken, (req, res) => {
@@ -51,7 +57,7 @@ router.get("/manager", Auth.verifyToken, (req, res) => {
     // Get manager
 });
 
-app.use("/api", router);
+app.use("/api/v1", router);
 
 app.listen(
     API_PORT,
