@@ -26,7 +26,6 @@ class ShipmentEditForm extends Component {
       orderStatus: currentShipment.order_status,
       timestamp: currentShipment.timestamp,
     })
-
   }
 
   handleChange = (e) => {

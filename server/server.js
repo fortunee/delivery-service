@@ -2,6 +2,7 @@ const express = require('express');
 const logger = require('morgan');
 const bodyParser = require('body-parser');
 const jwt = require('jsonwebtoken');
+var cors = require('cors')
 
 require('dotenv').config();
 
@@ -15,6 +16,7 @@ const router = express.Router();
 
 const secret = process.env.JWT_SECRET || 'SECRET TEXT';
 
+app.use(cors());
 app.use(logger("dev"));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
