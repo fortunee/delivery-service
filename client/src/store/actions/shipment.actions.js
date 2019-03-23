@@ -1,10 +1,20 @@
+import axios from 'axios';
+
 export const fetchShipment = () => {
-    return (dispatch, getState) => {
-        // Make async call before actual action dispatch below
-        return dispatch({
-            type: 'FETCH_SHIPMENT',
-            shipment
-        })
+    return (dispatch) => {
+        axios.get('http://localhost:3001/api/shipment')
+            .then(response => {
+                dispatch({
+                    type: 'FETCH_SHIPMENT_SUCCESS',
+                    shipment: response.data
+                })
+            })
+            .catch(error => {
+                dispatch({
+                    type: 'FETCH_SHIPMENT_ERROR',
+                    error
+                })
+            });
     }
 }
 
