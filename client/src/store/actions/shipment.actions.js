@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const fetchShipment = () => {
+export const fetchAllShipment = () => {
     return (dispatch) => {
         axios.get('http://localhost:3001/api/v1/shipment')
             .then(response => {
@@ -12,6 +12,24 @@ export const fetchShipment = () => {
             .catch(error => {
                 dispatch({
                     type: 'FETCH_SHIPMENT_ERROR',
+                    error
+                })
+            });
+    }
+}
+
+export const fetchSingleShipment = id => {
+    return (dispatch) => {
+        axios.get(`http://localhost:3001/api/v1/shipment/${id}`)
+            .then(response => {
+                dispatch({
+                    type: 'FETCH_SINGLE_SHIPMENT_SUCCESS',
+                    singleShipment: response.data
+                })
+            })
+            .catch(error => {
+                dispatch({
+                    type: 'FETCH_SINGLE_SHIPMENT_ERROR',
                     error
                 })
             });

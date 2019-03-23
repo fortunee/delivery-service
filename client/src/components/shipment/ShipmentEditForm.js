@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { updateShipment } from './../../store/actions/shipment.actions';
+import { fetchSingleShipment, updateShipment } from './../../store/actions/shipment.actions';
 import { fetchBikers } from './../../store/actions/biker.action';
 
 class ShipmentEditForm extends Component {
@@ -16,7 +16,10 @@ class ShipmentEditForm extends Component {
 
   componentDidMount = () => {
     this.props.fetchBikers();
+    const id = this.props.match.params.id;
+    console.log('Single shipment', this.props.fetchSingleShipment(id))
     const currentShipment = this.props.shipment;
+    // const currentShipment = this.props.fetchSingleShipment(id);
     this.setState({
       parcel: currentShipment.parcel,
       origin: currentShipment.origin,
@@ -81,7 +84,8 @@ class ShipmentEditForm extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    updateShipment: (shipment) => dispatch(updateShipment(shipment)),
+    updateShipment: shipment => dispatch(updateShipment(shipment)),
+    fetchSingleShipment: id => dispatch(fetchSingleShipment(id)),
     fetchBikers: () => dispatch(fetchBikers())
   }
 }

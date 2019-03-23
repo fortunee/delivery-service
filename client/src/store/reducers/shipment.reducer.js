@@ -10,6 +10,12 @@ const shipmentReducer = (state = initialState, action) => {
       case 'FETCH_SHIPMENT_ERROR':
         return { ...state, error: action.error }
 
+      case 'FETCH_SINGLE_SHIPMENT_SUCCESS':
+        return { ...state, singleShipment: action.singleShipment }
+
+      case 'FETCH_SINGLE_SHIPMENT_ERROR':
+        return { ...state, error: action.error }
+
       case 'UPDATE_SHIPMENT':
         console.log(action.shipment);
 
