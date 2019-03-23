@@ -42,7 +42,7 @@ const shipmentReducer = (state = initialState, action) => {
         console.log(action.shipment);
 
       default:
-        state;
+        return state;
     }
 }
 

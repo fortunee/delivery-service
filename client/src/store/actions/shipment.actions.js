@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export const fetchShipment = () => {
     return (dispatch) => {
-        axios.get('http://localhost:3001/api/shipment')
+        axios.get('http://localhost:3001/api/v1/shipment')
             .then(response => {
                 dispatch({
                     type: 'FETCH_SHIPMENT_SUCCESS',
