@@ -3,7 +3,7 @@ const initialState = {
         {
             id: 1,
             parcel: 'Tshirt',
-            timestamp: Date.now(),
+            timestamp: new Date().toLocaleString("en-US"),
             origin: 'Cologne',
             destination: 'Lagos',
             assignee: 'Unassigned',
@@ -12,7 +12,7 @@ const initialState = {
           {
             id: 2,
             parcel: 'Hat',
-            timestamp: Date.now(),
+            timestamp: new Date().toLocaleString("en-US"),
             origin: 'Berlin',
             destination: 'Abuja',
             assignee: 'John',
@@ -21,7 +21,7 @@ const initialState = {
           {
             id: 3,
             parcel: 'Sneakers',
-            timestamp: Date.now(),
+            timestamp: new Date().toLocaleString("en-US"),
             origin: 'Hamburg',
             destination: 'Cologne',
             assignee: 'Moritz',
@@ -31,6 +31,13 @@ const initialState = {
 };
 
 const shipmentReducer = (state = initialState, action) => {
+    switch (action.type) {
+      case 'FETCH_SINGLE_SHIPMENT':
+        return { ...state, singleShipment: action.shipment };
+
+      case 'UPDATE_SHIPMENT':
+        console.log(action.shipment);
+    }
     return state;
 }
 
