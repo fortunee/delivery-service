@@ -1,12 +1,13 @@
 import axios from 'axios';
 
-export const fetchBiker = () => {
+export const fetchBikers = () => {
+    console.log('Getting call yay!!!')
     return (dispatch) => {
         axios.get('http://localhost:3001/api/v1/bikers')
             .then(response => {
                 dispatch({
                     type: 'FETCH_BIKERS_SUCCESS',
-                    biker: response.data
+                    bikers: response.data
                 })
             })
             .catch(error => {

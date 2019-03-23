@@ -7,7 +7,7 @@ import bikerReducer from './biker.reducer';
 const rootReducer = combineReducers({
     auth: authReducer,
     shipment: shipmentReducer,
-    biker: bikerReducer
+    bikers: bikerReducer
 });
 
 export default rootReducer;
