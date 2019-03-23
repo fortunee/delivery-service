@@ -1,9 +1,11 @@
-const initialState = {};
+const initialState = {
+  shipments: []
+};
 
 const shipmentReducer = (state = initialState, action) => {
     switch (action.type) {
       case 'FETCH_SHIPMENT_SUCCESS':
-        return { ...state, shipment: action.shipment };
+        return { ...state, shipments: action.shipment };
 
       case 'FETCH_SHIPMENT_ERROR':
         return { ...state, error: action.error }

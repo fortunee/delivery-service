@@ -92,7 +92,7 @@ const mapDispatchToProps = dispatch => {
 
 const mapStateToProps = (state, ownProps) => {
   const id = ownProps.match.params.id;
-  const shipment = state.shipment.shipments.find(shipment => shipment.id == id);
+  const shipment = state.shipment.shipments && state.shipment.shipments.find(shipment => shipment.id == id);
   return {
     shipment
   }
