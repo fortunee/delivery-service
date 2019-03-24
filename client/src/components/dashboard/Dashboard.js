@@ -14,7 +14,7 @@ class Dashboard extends Component {
 
     render() {
         const { shipments, authData } = this.props;
-        if (!authData.message) return <Redirect to='/login' />
+        if (!authData.userId) return <Redirect to='/login' />
 
         return (
             <div className="dashboard container">

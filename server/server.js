@@ -41,11 +41,16 @@ router.post("/login", (req, res) => {
     }
 });
 
-/**
- * @todo pass Auth.verifyToken, Auth.verifyManager, middlewares
- */
-router.get("/shipment", (req, res) => {
-    res.status(200).send(shipments);
+router.get("/shipment", Auth.verifyToken, (req, res) => {
+    const user = req.decoded;
+    if (user.role === 'manager') {
+        res.status(200).send(shipments);
+    }
+
+    if (user.role === 'biker') {
+        const bikerShipments = shipments.filter(shipment => shipment.assignee === user.name);
+        res.status(200).send(bikerShipments);
+    }
 });
 
 router.get("/shipment/:id", (req, res) => {
@@ -54,11 +59,7 @@ router.get("/shipment/:id", (req, res) => {
     res.status(200).send(shipment);
 });
 
-/**
- * @todo pass  Auth.verifyToken, middleware
- */
-router.get("/bikers", (req, res) => {
-    // Get list of bikers
+router.get("/bikers", Auth.verifyToken, Auth.verifyManager, (req, res) => {
     const bikers = users.filter(user => user.role !== 'manager');
     res.status(200).send(bikers);
 });

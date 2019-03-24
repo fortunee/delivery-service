@@ -6,7 +6,7 @@ import LoggedInLinks from './LoggedInLinks';
 import LoggedOutLinks from './LoggedOutLinks';
 
 const Navbar = ({ auth }) => {
-    const links = auth.message ? <LoggedInLinks /> : <LoggedOutLinks />
+    const links = auth.userId ? <LoggedInLinks /> : <LoggedOutLinks />
     return (
         <nav className="nav-wrapper grey darken-3">
             <div className="container">
