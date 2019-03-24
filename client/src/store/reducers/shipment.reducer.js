@@ -1,3 +1,11 @@
+import {
+  FETCH_SHIPMENT_SUCCESS,
+  FETCH_SHIPMENT_ERROR, 
+  FETCH_SINGLE_SHIPMENT_SUCCESS,
+  FETCH_SINGLE_SHIPMENT_ERROR,
+  UPDATE_SHIPMENT_SUCCESS
+} from "../actions/type";
+
 const initialState = {
   shipments: [],
   singleShipment: {}
@@ -5,19 +13,19 @@ const initialState = {
 
 const shipmentReducer = (state = initialState, action) => {
     switch (action.type) {
-      case 'FETCH_SHIPMENT_SUCCESS':
+      case FETCH_SHIPMENT_SUCCESS:
         return { ...state, shipments: action.shipment };
 
-      case 'FETCH_SHIPMENT_ERROR':
+      case FETCH_SHIPMENT_ERROR:
         return { ...state, error: action.error }
 
-      case 'FETCH_SINGLE_SHIPMENT_SUCCESS':
+      case FETCH_SINGLE_SHIPMENT_SUCCESS:
         return { ...state, singleShipment: action.shipment }
 
-      case 'FETCH_SINGLE_SHIPMENT_ERROR':
+      case FETCH_SINGLE_SHIPMENT_ERROR:
         return { ...state, error: action.error }
 
-      case 'UPDATE_SHIPMENT':
+      case UPDATE_SHIPMENT_SUCCESS:
         console.log(action.shipment);
 
       default:

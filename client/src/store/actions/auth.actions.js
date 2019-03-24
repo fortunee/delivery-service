@@ -1,6 +1,8 @@
 import axios from 'axios';
 import jwt from 'jsonwebtoken';
 
+import { LOGIN_SUCCESS, LOGIN_ERROR, LOGOUT_SUCCESS } from './type';
+
 export const setAuthorizationToken = (token) => {
     if (token) {
         axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
@@ -11,7 +13,7 @@ export const setAuthorizationToken = (token) => {
 
 export const setAuthData = (user) => {
     return {
-        type: 'LOGIN_SUCCESS',
+        type: LOGIN_SUCCESS,
         authData: user
     }
 }
@@ -32,7 +34,7 @@ export const login = credetials => {
                 dispatch(setAuthData(decodedUser));
             })
             .catch(error => {
-                dispatch({ type: 'LOGIN_ERROR' });
+                dispatch({ type: LOGIN_ERROR });
             });
     }
 }
@@ -41,6 +43,6 @@ export const logout = () => {
     return (dispatch) => {
         localStorage.removeItem('jwtToken');
         setAuthorizationToken(false);
-        dispatch({ type: 'LOGOUT_SUCCESS' })
+        dispatch({ type: LOGOUT_SUCCESS })
     }
 }
