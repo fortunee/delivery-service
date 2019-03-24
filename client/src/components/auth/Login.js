@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
+
 import { login } from '../../store/actions/auth.actions';
 
 class Login extends Component {
@@ -20,8 +22,10 @@ class Login extends Component {
     }
     
     render() {
-        const { authError } = this.props;
-        
+        const { authError, authData } = this.props;
+
+        if (authData.message) return <Redirect to='/manager-dashbaord' />
+
         return (
         <div className="container">
             <div className="center red-text">
@@ -56,7 +60,8 @@ const mapDispatchToProps = dispatch => {
 
 const mapStateToProps = state => {
     return {
-        authError: state.auth.authError
+        authError: state.auth.authError,
+        authData: state.auth.authData
     }
 }
 

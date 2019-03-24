@@ -13,6 +13,7 @@ class App extends Component {
                 <div>
                     <Navbar />
                     <Switch>
+                        <Route exact path='/' component={Dashboard}/>
                         <Route path='/manager-dashboard' component={Dashboard}/>
                         <Route path='/biker-dashboard' component={Dashboard}/>
                         <Route path='/shipment/:id' component={ShipmentEditForm} />
