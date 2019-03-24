@@ -1,18 +1,27 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+
 import LoggedInLinks from './LoggedInLinks';
 import LoggedOutLinks from './LoggedOutLinks';
 
-const Navbar = () => {
+const Navbar = ({ auth }) => {
+    const links = auth.message ? <LoggedInLinks /> : <LoggedOutLinks />
     return (
         <nav className="nav-wrapper grey darken-3">
             <div className="container">
                 <Link to="/" className="brand-logo">Monica Delivery Service</Link>
-                <LoggedInLinks />
-                <LoggedOutLinks />
+                { links }
             </div>
         </nav>
     )
 }
 
-export default Navbar;
+const mapStateToProps = state => {
+    console.log(state);
+    return {
+        auth: state.auth.authData
+    }
+}  
+
+export default connect(mapStateToProps)(Navbar);

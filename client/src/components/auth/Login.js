@@ -1,4 +1,8 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
+
+import { login } from '../../store/actions/auth.actions';
 
 class Login extends Component {
     state = {
@@ -14,12 +18,19 @@ class Login extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        console.log(this.state);
+        this.props.login(this.state);
     }
     
     render() {
+        const { authError, authData } = this.props;
+
+        if (authData.message) return <Redirect to='/dashbaord' />
+
         return (
         <div className="container">
+            <div className="center red-text">
+              { authError ? <p>{authError}</p> : null }
+            </div>
             <form onSubmit={this.handleSubmit} className="white">
                 <h5 className="grey-text text-darken-3">Login</h5>
                 <div className="input-field">
@@ -41,4 +52,17 @@ class Login extends Component {
     }
 }
 
-export default Login;
+const mapDispatchToProps = dispatch => {
+    return {
+        login: credentials => dispatch(login(credentials))
+    }
+}
+
+const mapStateToProps = state => {
+    return {
+        authError: state.auth.authError,
+        authData: state.auth.authData
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 
 import { fetchSingleShipment, updateShipment } from './../../store/actions/shipment.actions';
 import { fetchBikers } from './../../store/actions/biker.action';
@@ -43,6 +44,9 @@ class ShipmentEditForm extends Component {
   }
 
   render() {
+    const { authData } = this.props;
+    if (!authData.message) return <Redirect to='/login' />
+
     return (
       <div className="container">
         <form className="white" onSubmit={this.handleSubmit}>
@@ -91,12 +95,11 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-const mapStateToProps = (state, ownProps) => {
-  const shipment = state.shipment.singleShipment;
-  const bikers = state.bikers.bikers;
+const mapStateToProps = (state) => {
   return {
-    shipment,
-    bikers
+    shipment: state.shipment.singleShipment,
+    bikers: state.bikers.bikers,
+    authData: state.auth.authData
   }
 }
 

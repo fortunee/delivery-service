@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 
 import ShipmentList from './../shipment/ShipmentList';
 
@@ -12,7 +13,8 @@ class Dashboard extends Component {
     }
 
     render() {
-        const { shipments } = this.props;
+        const { shipments, authData } = this.props;
+        if (!authData.message) return <Redirect to='/login' />
 
         return (
             <div className="dashboard container">
@@ -24,7 +26,8 @@ class Dashboard extends Component {
 
 const mapStateToProps = state => {
     return {
-        shipments: state.shipment.shipments
+        shipments: state.shipment.shipments,
+        authData: state.auth.authData
     }
 }
 
