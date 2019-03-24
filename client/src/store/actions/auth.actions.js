@@ -2,7 +2,7 @@ import axios from 'axios';
 import jwt from 'jsonwebtoken';
 
 import { LOGIN_SUCCESS, LOGIN_ERROR, LOGOUT_SUCCESS } from './type';
-import { URL } from '../../contants';
+import { SERVER_URL } from '../../contants';
 
 export const setAuthorizationToken = (token) => {
     if (token) {
