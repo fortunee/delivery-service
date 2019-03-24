@@ -41,6 +41,7 @@ class ShipmentEditForm extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     this.props.updateShipment(this.state);
+    this.props.history.push('/');
   }
 
   render() {
