@@ -34,7 +34,7 @@ router.post("/login", (req, res) => {
             role: user.role
           }, secret, { expiresIn: '2 days' });
   
-        res.status(200).send({ token, expiresIn: '2 days' });
+        res.status(200).send({ message: true, token, expiresIn: '2 days' });
     } else {
         res.status(401)
           .send({ message: 'Authentication failed due to invalid credentials.' });
