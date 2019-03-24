@@ -27,7 +27,7 @@ const shipmentReducer = (state = initialState, action) => {
         return { ...state, error: action.error }
 
       case UPDATE_SHIPMENT_SUCCESS:
-        return state
+        return { ...state, shipments: action.shipment };
 
       case UPDATE_SHIPMENT_ERROR:
         return { ...state, error: action.error }

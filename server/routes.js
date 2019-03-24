@@ -42,6 +42,26 @@ const routes = router => {
         const shipment = shipments.find(item => item.id == id);
         res.status(200).send(shipment);
     });
+
+    // update shipment endpoint
+    router.patch("/shipment/:id", (req, res) => {
+        const { id } = req.params;
+        const body = req.body;
+        const currentShipment = shipments.filter(shipment => shipment.id === id);
+
+        currentShipment[0].timestamp = body.timestamp || new Date().toLocaleString()
+        currentShipment[0].assignee = body.assignee || currentShipment.assignee
+        currentShipment[0].order_status = body.order_status || shipcurrentSent.order_status
+
+        const updatedShipments = shipments
+                                    .map((shipment) => {
+                                        if (shipment.id == currentShipment.id) {
+                                            shipment = currentShipment
+                                        }
+                                        return shipment;
+                                    })
+        res.status(200).send(updatedShipments);
+    });
     
     // bikers endpoint
     router.get("/bikers", Auth.verifyToken, Auth.verifyManager, (req, res) => {
