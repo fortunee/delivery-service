@@ -2,6 +2,7 @@ import axios from 'axios';
 import jwt from 'jsonwebtoken';
 
 import { LOGIN_SUCCESS, LOGIN_ERROR, LOGOUT_SUCCESS } from './type';
+import { URL } from '../../contants';
 
 export const setAuthorizationToken = (token) => {
     if (token) {
@@ -21,7 +22,7 @@ export const setAuthData = (user) => {
 export const login = credetials => {
     return (dispatch) => {
         axios
-            .post('http://localhost:3001/api/v1/login', {
+            .post(`${SERVER_URL}/login`, {
                 email: credetials.email,
                 password: credetials.password
             })

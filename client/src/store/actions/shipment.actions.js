@@ -9,7 +9,7 @@ import {
 
 export const fetchAllShipment = () => {
     return (dispatch) => {
-        axios.get('http://localhost:3001/api/v1/shipment')
+        axios.get(`${SERVER_URL}/shipment`)
             .then(response => {
                 dispatch({
                     type: FETCH_SHIPMENT_SUCCESS,
@@ -27,7 +27,7 @@ export const fetchAllShipment = () => {
 
 export const fetchSingleShipment = id => {
     return (dispatch) => {
-        axios.get(`http://localhost:3001/api/v1/shipment/${id}`)
+        axios.get(`${SERVER_URL}/shipment/${id}`)
             .then(response => {
                 dispatch({
                     type: FETCH_SINGLE_SHIPMENT_SUCCESS,
