@@ -20,7 +20,7 @@ const Navbar = () => {
 const mapStateToProps = state => {
     console.log(state);
     return {
-        auth: state.auth
+        auth: state.auth.authData
     }
 }  
 
