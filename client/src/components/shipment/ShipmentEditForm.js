@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { updateShipment } from './../../store/actions/shipment.actions';
+import { fetchSingleShipment, updateShipment } from './../../store/actions/shipment.actions';
+import { fetchBikers } from './../../store/actions/biker.action';
 
 class ShipmentEditForm extends Component {
   state = {
@@ -14,18 +15,20 @@ class ShipmentEditForm extends Component {
   }
 
   componentDidMount = () => {
-    /**
-     * @todo Fetch bikers and set it to state too
-     */
+    this.props.fetchBikers();
+    const id = this.props.match.params.id;
+    this.props.fetchSingleShipment(id);
     const currentShipment = this.props.shipment;
-    this.setState({
-      parcel: currentShipment.parcel,
-      origin: currentShipment.origin,
-      destination: currentShipment.destination,
-      assignee: currentShipment.assignee,
-      orderStatus: currentShipment.order_status,
-      timestamp: currentShipment.timestamp,
-    })
+    if (currentShipment) {
+      this.setState({
+        parcel: currentShipment.parcel,
+        origin: currentShipment.origin,
+        destination: currentShipment.destination,
+        assignee: currentShipment.assignee,
+        orderStatus: currentShipment.order_status,
+        timestamp: currentShipment.timestamp,
+      })
+    }
   }
 
   handleChange = (e) => {
@@ -58,13 +61,9 @@ class ShipmentEditForm extends Component {
           </div>
           <div className="input-field col s12">
             <select className="browser-default" id="assignee" value={this.state.assignee} onChange={this.handleChange}>
-              <option value={this.state.assignee} disabled>{this.state.assignee}</option>
-              <option value="John">John</option>
-              <option value="Moritz">Moritz</option>
-              <option value="Unassigned">Unassigned</option>
-              {/* {bikers.map(biker =>
+              {this.props.bikers && this.props.bikers.map(biker =>
                 <option key={biker.id} value={biker.name}>{biker.name}</option>
-              )} */}
+              )}
             </select>
           </div>
           <div className="input-field">
@@ -86,15 +85,18 @@ class ShipmentEditForm extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    updateShipment: (shipment) => dispatch(updateShipment(shipment))
+    updateShipment: shipment => dispatch(updateShipment(shipment)),
+    fetchSingleShipment: id => dispatch(fetchSingleShipment(id)),
+    fetchBikers: () => dispatch(fetchBikers())
   }
 }
 
 const mapStateToProps = (state, ownProps) => {
-  const id = ownProps.match.params.id;
-  const shipment = state.shipment.shipments && state.shipment.shipments.find(shipment => shipment.id == id);
+  const shipment = state.shipment.singleShipment;
+  const bikers = state.bikers.bikers;
   return {
-    shipment
+    shipment,
+    bikers
   }
 }
 

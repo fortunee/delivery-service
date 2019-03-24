@@ -45,16 +45,22 @@ router.post("/login", (req, res) => {
  * @todo pass Auth.verifyToken, Auth.verifyManager, middlewares
  */
 router.get("/shipment", (req, res) => {
-    // Get list of shipments
     res.status(200).send(shipments);
 });
 
-router.get("/bikers", Auth.verifyToken, (req, res) => {
-    // Get list of bikers
+router.get("/shipment/:id", (req, res) => {
+    const { id } = req.params;
+    const shipment = shipments.find(item => item.id == id);
+    res.status(200).send(shipment);
 });
 
-router.get("/manager", Auth.verifyToken, (req, res) => {
-    // Get manager
+/**
+ * @todo pass  Auth.verifyToken, middleware
+ */
+router.get("/bikers", (req, res) => {
+    // Get list of bikers
+    const bikers = users.filter(user => user.role !== 'manager');
+    res.status(200).send(bikers);
 });
 
 app.use("/api/v1", router);

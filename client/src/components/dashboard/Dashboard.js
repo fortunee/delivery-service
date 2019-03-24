@@ -3,12 +3,12 @@ import { connect } from 'react-redux';
 
 import ShipmentList from './../shipment/ShipmentList';
 
-import { fetchShipment } from './../../store/actions/shipment.actions';
+import { fetchAllShipment } from './../../store/actions/shipment.actions';
 
 class Dashboard extends Component {
 
     componentDidMount = () => {
-        this.props.fetchShipment();
+        this.props.fetchAllShipment();
     }
 
     render() {
@@ -22,7 +22,7 @@ class Dashboard extends Component {
     }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
     return {
         shipments: state.shipment.shipments
     }
@@ -30,7 +30,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        fetchShipment: () =>  dispatch(fetchShipment())
+        fetchAllShipment: () =>  dispatch(fetchAllShipment())
     }
 }
 
