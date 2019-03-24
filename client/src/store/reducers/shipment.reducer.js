@@ -1,5 +1,6 @@
 const initialState = {
-  shipments: []
+  shipments: [],
+  singleShipment: {}
 };
 
 const shipmentReducer = (state = initialState, action) => {
