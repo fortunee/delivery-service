@@ -24,7 +24,7 @@ export const fetchSingleShipment = id => {
             .then(response => {
                 dispatch({
                     type: 'FETCH_SINGLE_SHIPMENT_SUCCESS',
-                    singleShipment: response.data
+                    shipment: response.data
                 })
             })
             .catch(error => {

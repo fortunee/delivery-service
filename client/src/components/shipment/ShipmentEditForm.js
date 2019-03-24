@@ -17,17 +17,18 @@ class ShipmentEditForm extends Component {
   componentDidMount = () => {
     this.props.fetchBikers();
     const id = this.props.match.params.id;
-    console.log('Single shipment', this.props.fetchSingleShipment(id))
+    this.props.fetchSingleShipment(id);
     const currentShipment = this.props.shipment;
-    // const currentShipment = this.props.fetchSingleShipment(id);
-    this.setState({
-      parcel: currentShipment.parcel,
-      origin: currentShipment.origin,
-      destination: currentShipment.destination,
-      assignee: currentShipment.assignee,
-      orderStatus: currentShipment.order_status,
-      timestamp: currentShipment.timestamp,
-    })
+    if (currentShipment) {
+      this.setState({
+        parcel: currentShipment.parcel,
+        origin: currentShipment.origin,
+        destination: currentShipment.destination,
+        assignee: currentShipment.assignee,
+        orderStatus: currentShipment.order_status,
+        timestamp: currentShipment.timestamp,
+      })
+    }
   }
 
   handleChange = (e) => {
@@ -91,8 +92,7 @@ const mapDispatchToProps = dispatch => {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  const id = ownProps.match.params.id;
-  const shipment = state.shipment.shipments.find(shipment => shipment.id == id);
+  const shipment = state.shipment.singleShipment;
   const bikers = state.bikers.bikers;
   return {
     shipment,

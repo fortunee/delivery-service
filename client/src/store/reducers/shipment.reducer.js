@@ -11,7 +11,7 @@ const shipmentReducer = (state = initialState, action) => {
         return { ...state, error: action.error }
 
       case 'FETCH_SINGLE_SHIPMENT_SUCCESS':
-        return { ...state, singleShipment: action.singleShipment }
+        return { ...state, singleShipment: action.shipment }
 
       case 'FETCH_SINGLE_SHIPMENT_ERROR':
         return { ...state, error: action.error }

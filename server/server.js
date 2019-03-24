@@ -45,8 +45,13 @@ router.post("/login", (req, res) => {
  * @todo pass Auth.verifyToken, Auth.verifyManager, middlewares
  */
 router.get("/shipment", (req, res) => {
-    // Get list of shipments
     res.status(200).send(shipments);
+});
+
+router.get("/shipment/:id", (req, res) => {
+    const { id } = req.params;
+    const shipment = shipments.find(item => item.id == id);
+    res.status(200).send(shipment);
 });
 
 /**
