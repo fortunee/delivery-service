@@ -11,13 +11,10 @@ export const login = credetials => {
                 dispatch({
                     type: 'LOGIN_SUCCESS',
                     authData: response.data
-                })
+                });
             })
             .catch(error => {
-                dispatch({
-                    type: 'LOGIN_ERROR',
-                    error
-                })
+                dispatch({ type: 'LOGIN_ERROR' });
             });
     }
 }
