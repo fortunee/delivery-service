@@ -24,7 +24,7 @@ class Login extends Component {
     render() {
         const { authError, authData } = this.props;
 
-        if (authData.message) return <Redirect to='/manager-dashbaord' />
+        if (authData.message) return <Redirect to='/dashbaord' />
 
         return (
         <div className="container">
