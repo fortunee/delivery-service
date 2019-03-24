@@ -45,7 +45,7 @@ class ShipmentEditForm extends Component {
 
   render() {
     const { authData } = this.props;
-    if (!authData.message) return <Redirect to='/login' />
+    if (!authData.userId) return <Redirect to='/login' />
 
     return (
       <div className="container">

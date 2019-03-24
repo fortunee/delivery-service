@@ -1,17 +1,24 @@
 import axios from 'axios';
 
+import {
+    FETCH_SHIPMENT_SUCCESS,
+    FETCH_SHIPMENT_ERROR,
+    FETCH_SINGLE_SHIPMENT_SUCCESS,
+    FETCH_SINGLE_SHIPMENT_ERROR
+} from './type';
+
 export const fetchAllShipment = () => {
     return (dispatch) => {
-        axios.get('http://localhost:3001/api/v1/shipment')
+        axios.get(`${SERVER_URL}/shipment`)
             .then(response => {
                 dispatch({
-                    type: 'FETCH_SHIPMENT_SUCCESS',
+                    type: FETCH_SHIPMENT_SUCCESS,
                     shipment: response.data
                 })
             })
             .catch(error => {
                 dispatch({
-                    type: 'FETCH_SHIPMENT_ERROR',
+                    type: FETCH_SHIPMENT_ERROR,
                     error
                 })
             });
@@ -20,16 +27,16 @@ export const fetchAllShipment = () => {
 
 export const fetchSingleShipment = id => {
     return (dispatch) => {
-        axios.get(`http://localhost:3001/api/v1/shipment/${id}`)
+        axios.get(`${SERVER_URL}/shipment/${id}`)
             .then(response => {
                 dispatch({
-                    type: 'FETCH_SINGLE_SHIPMENT_SUCCESS',
+                    type: FETCH_SINGLE_SHIPMENT_SUCCESS,
                     shipment: response.data
                 })
             })
             .catch(error => {
                 dispatch({
-                    type: 'FETCH_SINGLE_SHIPMENT_ERROR',
+                    type: FETCH_SINGLE_SHIPMENT_ERROR,
                     error
                 })
             });
