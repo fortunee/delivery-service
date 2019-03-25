@@ -30,7 +30,6 @@ export const login = credetials => {
                 const token = response.data.token;
                 localStorage.setItem('jwtToken', token);
                 setAuthorizationToken(token);
-                console.log(jwt.decode(token));
                 const decodedUser = jwt.decode(token);
                 dispatch(setAuthData(decodedUser));
             })
