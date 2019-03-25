@@ -16,20 +16,38 @@ class ShipmentEditForm extends Component {
   }
 
   componentDidMount = () => {
-    this.props.fetchBikers();
+    const authData = this.props.authData;
+    console.log('Auth data hereeeeee', authData);
+    if (authData.role === 'manager') {
+      this.props.fetchBikers();
+    }
     const id = this.props.match.params.id;
     this.props.fetchSingleShipment(id);
     const currentShipment = this.props.shipment;
+    console.log('ORDER STATUS STATE', currentShipment)
     if (currentShipment) {
-      this.setState({
-        parcel: currentShipment.parcel,
-        origin: currentShipment.origin,
-        destination: currentShipment.destination,
-        assignee: currentShipment.assignee,
-        orderStatus: currentShipment.order_status,
-        timestamp: currentShipment.timestamp,
-      })
+      this.populateFormFields(currentShipment)
     }
+  }
+
+  componentDidUpdate = (prevProps) => {
+    console.log('CURRENT PROPS', this.props)
+    console.log('PREV PROPS', prevProps)
+    const currentShipment = this.props.shipment;
+    // if (!prevProps.shipment.id  && !this.state.orderStatus) {
+    //   this.populateFormFields(currentShipment)
+    // }
+  }
+
+  populateFormFields = (currentShipment) => {
+    this.setState({
+      parcel: currentShipment.parcel,
+      origin: currentShipment.origin,
+      destination: currentShipment.destination,
+      assignee: currentShipment.assignee,
+      orderStatus: currentShipment.order_status,
+      timestamp: currentShipment.timestamp,
+    })
   }
 
   handleChange = (e) => {
@@ -40,7 +58,9 @@ class ShipmentEditForm extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    this.props.updateShipment(this.state);
+    const id = this.props.match.params.id;
+    const update = { ...this.state, id }
+    this.props.updateShipment(update);
     this.props.history.push('/');
   }
 
@@ -53,30 +73,30 @@ class ShipmentEditForm extends Component {
         <form className="white" onSubmit={this.handleSubmit}>
           <h5 className="grey-text text-darken-3">Edit Shipment</h5>
           <div className="input-field">
-            <label htmlFor="origin">Parcel</label>
+            <label className={this.state.parcel ? "active" : ""}  htmlFor="origin">Parcel</label>
             <input type="text" id='parcel' defaultValue={this.state.parcel} onChange={this.handleChange}/>
           </div>
           <div className="input-field">
-            <label htmlFor="origin">Origin</label>
+            <label className={this.state.origin ? "active" : ""}  htmlFor="origin">Origin</label>
             <input type="text" id='origin' defaultValue={this.state.origin} onChange={this.handleChange}/>
           </div>
           <div className="input-field">
-            <label htmlFor="destination">Destination</label>
+            <label className={this.state.destination ? "active" : ""}  htmlFor="destination">Destination</label>
             <input type="text" id='destination' defaultValue={this.state.destination} onChange={this.handleChange}/>
           </div>
           <div className="input-field col s12">
             <select className="browser-default" id="assignee" value={this.state.assignee} onChange={this.handleChange}>
-              {this.props.bikers && this.props.bikers.map(biker =>
-                <option key={biker.id} value={biker.name}>{biker.name}</option>
-              )}
-            </select>
+                {this.props.bikers && this.props.bikers.length ? this.props.bikers.map(biker =>
+                  <option key={biker.id} value={biker.name}>{biker.name}</option>
+                ) : <option value={this.state.assignee}>{this.state.assignee}</option> }
+              </select>
           </div>
           <div className="input-field">
-            <label htmlFor="orderStatus">Order Status</label>
+            <label className={this.state.orderStatus ? "active" : ""}  htmlFor="orderStatus">Order Status</label>
             <input type="text" id='orderStatus' defaultValue={this.state.orderStatus} onChange={this.handleChange}/>
           </div>
           <div className="input-field">
-            <label htmlFor="timestamp">Time Stamp</label>
+            <label className={this.state.timestamp ? "active" : ""}  htmlFor="timestamp">Time Stamp</label>
             <input type="text" id='timestamp' defaultValue={this.state.timestamp} onChange={this.handleChange}/>
           </div>
           <div className="input-field">
@@ -96,9 +116,11 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, ownProps) => {
+  const id = ownProps.match.params.id;
+  const shipment = state.shipment.shipments.find(shipment => shipment.id == id);
   return {
-    shipment: state.shipment.singleShipment,
+    shipment,
     bikers: state.bikers.bikers,
     authData: state.auth.authData
   }
