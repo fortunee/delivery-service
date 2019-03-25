@@ -6,7 +6,7 @@
   "scripts": {
     "start": "concurrently \"npm run start:server\" \"npm run start:client\"",
     "start:client": "webpack-dev-server --config ./webpack.config.js --mode development",
-    "start:server": "nodemon backend/server.js"
+    "start:server": "node backend/server.js"
   },
   "repository": {
     "type": "git",

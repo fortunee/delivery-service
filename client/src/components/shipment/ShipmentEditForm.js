@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
-import { fetchSingleShipment, updateShipment } from './../../store/actions/shipment.actions';
+import { updateShipment, fetchAllShipment } from './../../store/actions/shipment.actions';
 import { fetchBikers } from './../../store/actions/biker.action';
 
 class ShipmentEditForm extends Component {
   state = {
+    id: '',
     parcel: '',
     origin: '',
     destination: '',
@@ -17,26 +18,17 @@ class ShipmentEditForm extends Component {
 
   componentDidMount = () => {
     const authData = this.props.authData;
-    console.log('Auth data hereeeeee', authData);
+
     if (authData.role === 'manager') {
       this.props.fetchBikers();
     }
-    const id = this.props.match.params.id;
-    this.props.fetchSingleShipment(id);
+
+    this.props.fetchAllShipment()
     const currentShipment = this.props.shipment;
-    console.log('ORDER STATUS STATE', currentShipment)
+
     if (currentShipment) {
       this.populateFormFields(currentShipment)
     }
-  }
-
-  componentDidUpdate = (prevProps) => {
-    console.log('CURRENT PROPS', this.props)
-    console.log('PREV PROPS', prevProps)
-    const currentShipment = this.props.shipment;
-    // if (!prevProps.shipment.id  && !this.state.orderStatus) {
-    //   this.populateFormFields(currentShipment)
-    // }
   }
 
   populateFormFields = (currentShipment) => {
@@ -111,7 +103,7 @@ class ShipmentEditForm extends Component {
 const mapDispatchToProps = dispatch => {
   return {
     updateShipment: shipment => dispatch(updateShipment(shipment)),
-    fetchSingleShipment: id => dispatch(fetchSingleShipment(id)),
+    fetchAllShipment: () => dispatch(fetchAllShipment()),
     fetchBikers: () => dispatch(fetchBikers())
   }
 }
@@ -121,6 +113,7 @@ const mapStateToProps = (state, ownProps) => {
   const shipment = state.shipment.shipments.find(shipment => shipment.id == id);
   return {
     shipment,
+    singleShipment: state.shipment.singleShipment,
     bikers: state.bikers.bikers,
     authData: state.auth.authData
   }
