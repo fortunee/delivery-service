@@ -35,13 +35,6 @@ const routes = router => {
         }
         res.status(200).send(shipments);
     });
-    
-    // single shipment endpoint
-    router.get("/shipment/:id", (req, res) => {
-        const { id } = req.params;
-        const shipment = shipments.find(item => item.id == id);
-        res.status(200).send(shipment);
-    });
 
     // update shipment endpoint
     router.patch("/shipment/:id", (req, res) => {

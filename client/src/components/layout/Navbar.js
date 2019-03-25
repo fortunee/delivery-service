@@ -10,7 +10,7 @@ const Navbar = ({ auth }) => {
     return (
         <nav className="nav-wrapper grey darken-3">
             <div className="container">
-                <Link to="/" className="brand-logo">Monica Delivery Service</Link>
+                <Link to="/" className="brand-logo">Cologne Delivery Service</Link>
                 { links }
             </div>
         </nav>
@@ -18,7 +18,6 @@ const Navbar = ({ auth }) => {
 }
 
 const mapStateToProps = state => {
-    console.log(state);
     return {
         auth: state.auth.authData
     }
