@@ -4,7 +4,7 @@ import ShipmentDetails from './ShipmentDetails';
 const ShipmentList = ({ shipments }) => {
     return (
         <div className="shipment-list">
-            <table className="highlight responsive-table">
+            <table className="highlight responsive-table white">
                 <thead>
                 <tr>
                     <th>Parcel</th>

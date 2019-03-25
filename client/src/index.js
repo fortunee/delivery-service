@@ -10,6 +10,8 @@ import rootReducer from './store/reducers/root.reducer';
 import { setAuthorizationToken, setAuthData } from './store/actions/auth.actions';
 import { fetchAllShipment } from './store/actions/shipment.actions';
 
+import './index.scss'
+
 const store = createStore(
   rootReducer,
   compose(
