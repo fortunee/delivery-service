@@ -27,7 +27,13 @@ const shipmentReducer = (state = initialState, action) => {
         return { ...state, error: action.error }
 
       case UPDATE_SHIPMENT_SUCCESS:
-        return { ...state, shipments: action.shipment };
+        const shipments = state.shipments.map(shipment => {
+          if (shipment.id == action.shipment.id) {
+            return action.shipment
+          }
+          return shipment
+        })
+        return { ...state, shipments };
 
       case UPDATE_SHIPMENT_ERROR:
         return { ...state, error: action.error }

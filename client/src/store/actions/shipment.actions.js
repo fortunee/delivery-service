@@ -48,7 +48,7 @@ export const fetchSingleShipment = id => {
 
 export const updateShipment = shipment =>  {
     return (dispatch) => {
-        axios.get(`${SERVER_URL}/shipment/${shipment.id}`)
+        axios.patch(`${SERVER_URL}/shipment/${shipment.id}`, shipment)
             .then(() => {
                 dispatch({
                     type: UPDATE_SHIPMENT_SUCCESS,

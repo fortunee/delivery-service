@@ -47,20 +47,22 @@ const routes = router => {
     router.patch("/shipment/:id", (req, res) => {
         const { id } = req.params;
         const body = req.body;
-        const currentShipment = shipments.filter(shipment => shipment.id === id);
+        console.log('BODY', body)
+        const currentShipment = shipments.filter(shipment => shipment.id == id);
+        console.log('BODY', currentShipment)
 
         currentShipment[0].timestamp = body.timestamp || new Date().toLocaleString()
-        currentShipment[0].assignee = body.assignee || currentShipment.assignee
-        currentShipment[0].order_status = body.order_status || shipcurrentSent.order_status
+        currentShipment[0].assignee = body.assignee || currentShipment[0].assignee
+        currentShipment[0].order_status = body.orderStatus || currentShipment[0].order_status
 
-        const updatedShipments = shipments
-                                    .map((shipment) => {
-                                        if (shipment.id == currentShipment.id) {
-                                            shipment = currentShipment
-                                        }
-                                        return shipment;
-                                    })
-        res.status(200).send(updatedShipments);
+        // const updatedShipments = shipments
+        //                             .map((shipment) => {
+        //                                 if (shipment.id == currentShipment.id) {
+        //                                     shipment = currentShipment
+        //                                 }
+        //                                 return shipment;
+                                    // })
+        res.status(200).send(currentShipment[0]);
     });
     
     // bikers endpoint

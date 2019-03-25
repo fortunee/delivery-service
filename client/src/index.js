@@ -8,6 +8,7 @@ import jwt from 'jsonwebtoken';
 import App from './App';
 import rootReducer from './store/reducers/root.reducer';
 import { setAuthorizationToken, setAuthData } from './store/actions/auth.actions';
+import { fetchAllShipment } from './store/actions/shipment.actions';
 
 const store = createStore(
   rootReducer,
@@ -20,6 +21,7 @@ const store = createStore(
 if (localStorage.jwtToken) {
   setAuthorizationToken(localStorage.jwtToken);
   store.dispatch(setAuthData(jwt.decode(localStorage.jwtToken)));
+  store.dispatch(fetchAllShipment())
 }
 
 ReactDOM.render(
