@@ -4,20 +4,52 @@
   "description": "A fictional service delivery company",
   "main": "index.js",
   "scripts": {
-    "start": "concurrently \"cd server && nodemon server.js\" \"cd client && npm start\""
+    "start": "concurrently \"npm run start:server\" \"npm run start:client\"",
+    "start:client": "webpack-dev-server --config ./webpack.config.js --mode development",
+    "start:server": "node backend/server.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/fortunee/delivery-service.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "Fortune Ekeruo",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/fortunee/delivery-service/issues"
   },
   "homepage": "https://github.com/fortunee/delivery-service#readme",
+  "devDependencies": {
+    "@babel/core": "^7.3.4",
+    "@babel/plugin-proposal-class-properties": "^7.4.0",
+    "@babel/preset-env": "^7.3.4",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.5",
+    "css-loader": "^2.1.1",
+    "node-sass": "^4.11.0",
+    "react-hot-loader": "^4.8.0",
+    "sass-loader": "^7.1.0",
+    "style-loader": "^0.23.1",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.3.0",
+    "webpack-dev-server": "^3.2.1"
+  },
   "dependencies": {
-    "concurrently": "^4.1.0"
+    "axios": "^0.18.0",
+    "body-parser": "^1.18.3",
+    "concurrently": "^4.1.0",
+    "cors": "^2.8.5",
+    "dotenv": "^7.0.0",
+    "express": "^4.16.4",
+    "html-webpack-plugin": "^3.2.0",
+    "jsonwebtoken": "^8.5.1",
+    "morgan": "^1.9.1",
+    "prop-types": "^15.7.2",
+    "react": "^16.8.4",
+    "react-dom": "^16.8.4",
+    "react-redux": "^6.0.1",
+    "react-router-dom": "^5.0.0",
+    "redux": "^4.0.1",
+    "redux-thunk": "^2.3.0"
   }
 }

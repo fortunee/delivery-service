@@ -1,10 +1,33 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { createStore, applyMiddleware, compose } from 'redux';
+import { Provider } from 'react-redux';
+import thunk from 'redux-thunk';
+import jwt from 'jsonwebtoken';
 
-const title = 'Delivery Service App';
+import App from './App';
+import rootReducer from './store/reducers/root.reducer';
+import { setAuthorizationToken, setAuthData } from './store/actions/auth.actions';
+
+import './index.scss'
+
+const store = createStore(
+  rootReducer,
+  compose(
+    applyMiddleware(thunk),
+    window.__REDUX_DEVTOOLS_EXTENSION__ ? 
+    window.__REDUX_DEVTOOLS_EXTENSION__() : f => f
+  )
+)
+if (localStorage.jwtToken) {
+  setAuthorizationToken(localStorage.jwtToken);
+  store.dispatch(setAuthData(jwt.decode(localStorage.jwtToken)));
+}
 
 ReactDOM.render(
-  <div>{title}</div>,
+  <Provider store={store}>
+    <App />
+  </Provider>,
   document.getElementById('app')
 );
 

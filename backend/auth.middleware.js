@@ -19,8 +19,8 @@ const Auth = {
           message: 'Authentication required to access this route!'
         });
     }
-
-    jwt.verify(token, secret, (err, decoded) => {
+    const jwtToken = token.split(' ')[1];
+    jwt.verify(jwtToken, secret, (err, decoded) => {
       if (err) {
         res.status(401).send({
             message: 'Authentication failed due to invalid token!'
