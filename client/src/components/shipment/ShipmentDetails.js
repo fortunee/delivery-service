@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 const ShipmentDetails = ({shipment}) => {
   return (
@@ -16,6 +17,10 @@ const ShipmentDetails = ({shipment}) => {
       </li>
   </ul>
   )
+}
+
+ShipmentDetails.propTypes = {
+  shipment: PropTypes.object.isRequired
 }
 
 export default ShipmentDetails;

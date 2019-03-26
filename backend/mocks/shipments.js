@@ -20,7 +20,7 @@ module.exports = [
       {
         id: 3,
         parcel: 'Sneakers',
-        timestamp: new Date().toLocaleString("en-US"),
+        timestamp: '3/26/2019, 8:38:23 AM',
         origin: 'Hamburg',
         destination: 'Cologne',
         assignee: 'Moritz',

@@ -31,22 +31,29 @@ const routes = router => {
         const user = req.decoded;
         if (user.role !== 'manager') {
             const bikerShipments = shipments.filter(shipment => shipment.assignee === user.name);
-            res.status(200).send(bikerShipments);
+            return res.status(200).send(bikerShipments);
         }
         res.status(200).send(shipments);
     });
 
     // update shipment endpoint
-    router.patch("/shipment/:id", (req, res) => {
+    router.patch("/shipment/:id", Auth.verifyToken, (req, res) => {
         const { id } = req.params;
         const body = req.body;
-        const currentShipment = shipments.filter(shipment => shipment.id == id);
+        const { role } = req.decoded;
 
-        currentShipment[0].timestamp = body.timestamp || new Date().toLocaleString()
-        currentShipment[0].assignee = body.assignee || currentShipment[0].assignee
-        currentShipment[0].order_status = body.orderStatus || currentShipment[0].order_status
+        const [ currentShipment ] = shipments.filter(shipment => shipment.id == id);
 
-        res.status(200).send(currentShipment[0]);
+        if (currentShipment) {
+            currentShipment.assignee = body.assignee || currentShipment.assignee;
+            currentShipment.order_status = body.orderStatus || currentShipment.order_status;
+            
+            if (role == 'biker') currentShipment.timestamp = new Date().toLocaleString();
+
+            return res.status(200).send(currentShipment);
+        }
+
+        return res.status(404).send('Shipment not found')
     });
     
     // bikers endpoint

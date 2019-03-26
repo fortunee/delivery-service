@@ -1,12 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import LoggedInLinks from './LoggedInLinks';
 import LoggedOutLinks from './LoggedOutLinks';
 
-const Navbar = ({ auth }) => {
-    const links = auth.userId ? <LoggedInLinks /> : <LoggedOutLinks />
+const Navbar = ({ authData }) => {
+    const links = authData.userId ? <LoggedInLinks /> : <LoggedOutLinks />
     return (
         <nav className="nav-wrapper grey darken-3">
             <div className="container">
@@ -17,10 +18,14 @@ const Navbar = ({ auth }) => {
     )
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = ({ auth: { authData }}) => {
     return {
-        auth: state.auth.authData
+        authData
     }
-}  
+}
+
+Navbar.propTypes = {
+    authData: PropTypes.object.isRequired
+}
 
 export default connect(mapStateToProps)(Navbar);

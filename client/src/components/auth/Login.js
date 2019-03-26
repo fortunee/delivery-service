@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import { login } from '../../store/actions/auth.actions';
 
@@ -58,11 +59,17 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = ({ auth: { authError, authData } }) => {
     return {
-        authError: state.auth.authError,
-        authData: state.auth.authData
+        authError,
+        authData
     }
+}
+
+Login.propTypes = {
+    authError: PropTypes.string,
+    authData: PropTypes.object,
+    login: PropTypes.func.isRequired
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);

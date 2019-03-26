@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import ShipmentList from './../shipment/ShipmentList';
 
@@ -35,6 +36,12 @@ const mapDispatchToProps = dispatch => {
     return {
         fetchAllShipment: () =>  dispatch(fetchAllShipment())
     }
+}
+
+Dashboard.propTypes = {
+    shipments: PropTypes.array.isRequired,
+    authData: PropTypes.object.isRequired,
+    fetchAllShipment: PropTypes.func.isRequired
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);

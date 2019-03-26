@@ -1,6 +1,8 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+
 import { logout } from '../../store/actions/auth.actions';
 
 const LoggedInLinks = ({ logout }) => {
@@ -17,6 +19,10 @@ const mapDispatchToProps = dispatch => {
     return {
         logout: () => dispatch(logout())
     }
+}
+
+LoggedInLinks.propTypes = {
+    logout: PropTypes.func.isRequired
 }
 
 export default connect(null, mapDispatchToProps)(LoggedInLinks);
