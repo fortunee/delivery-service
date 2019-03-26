@@ -37,4 +37,4 @@ A fictional delivery service company that collects and delivers parcels for peop
 3. Run `npm install`
 4. Create a `.env` file and add a `JWT_SECRET` to it - Please see the `.env.sample` file
 5. Run `npm start`
-6. Navigate wth the browser to `http://localhost:8080/` or whatever port specified in the terminal
+6. Navigate wth the browser to `http://localhost:8080/` or whatever host shown in the terminal
