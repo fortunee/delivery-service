@@ -33,8 +33,12 @@ A fictional delivery service company that collects and delivers parcels for peop
 ### Local setup for contributions
 
 1. Clone the repo `git clone https://github.com/fortunee/delivery-service.git`
-2. Change directory into the folder `cd delivery-service
+2. Change directory into the folder `cd delivery-service`
 3. Run `npm install`
 4. Create a `.env` file and add a `JWT_SECRET` to it - Please see the `.env.sample` file
 5. Run `npm start`
 6. Navigate wth the browser to `http://localhost:8080/` or whatever host shown in the terminal
+
+### Next steps
+- Integrate a database
+- Make backend more robust
