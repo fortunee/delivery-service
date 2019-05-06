@@ -4,14 +4,6 @@ const users = require('./mocks/users.js');
 const secret = process.env.JWT_SECRET || 'SECRET TEXT';
 
 const Auth = {
-  /**
-   * verifyToken - Verifies validity of a supplied token
-   *
-   * @param  {object} req  Request object
-   * @param  {object} res  Response object
-   * @param  {object} next
-   * @returns {object} Response status
-   */
   verifyToken(req, res, next) {
     const token = req.headers.authorization || req.headers['x-access-token'];
     if (!token) {
@@ -31,14 +23,6 @@ const Auth = {
     });
   },
 
-  /**
-   * verifyManager - Verifies that user is a manager
-   *
-   * @param  {object} req  Request object
-   * @param  {object} res  Response object
-   * @param  {object} next
-   * @returns {object} Response object
-   */
   verifyManager(req, res, next) {
     const { role } = req.decoded;
     const user = users.find((user) => user.role === role);
