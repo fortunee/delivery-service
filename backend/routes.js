@@ -44,7 +44,7 @@ const routes = router => {
 
         const [ currentShipment ] = shipments.filter(shipment => shipment.id == id);
 
-        if (currentShipment) {
+        if (Object.keys(currentShipment).length > 0) {
             currentShipment.assignee = body.assignee || currentShipment.assignee;
             currentShipment.order_status = body.orderStatus || currentShipment.order_status;
             
