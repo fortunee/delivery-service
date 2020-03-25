@@ -5,9 +5,10 @@ A fictional delivery service company that collects and delivers parcels for peop
 
 - A list of users with a role of `manager` or `biker`.
 - User with a `biker` role is able to:
-    - Login and see only shipments that are assigned to them on the dashboard.
+    - Login
+    - See only shipments that are assigned to them on the dashboard.
     - Update the order status and timestamp of every order.
-    - Logout of the application.
+    - Logout
 - User with `manager` role is able to:
     - Login and see a list all shipments available on the dashboard.
     - Assign a shipment to a biker by selecting from a list of bikers.
