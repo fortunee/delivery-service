@@ -10,9 +10,10 @@ A fictional delivery service company that collects and delivers parcels for peop
     - Update the order status and timestamp of every order.
     - Logout
 - User with `manager` role is able to:
-    - Login and see a list all shipments available on the dashboard.
+    - Login
+    - See a list of all shipments available on the dashboard.
     - Assign a shipment to a biker by selecting from a list of bikers.
-    - Logout of the application.
+    - Logout.
 - A list of shipments with the following information:
     - Parcel
     - Origin
